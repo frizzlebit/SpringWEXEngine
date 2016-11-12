@@ -2,7 +2,6 @@ package guru.watson;
 
 import javax.xml.transform.Source;
 
-import org.guru.watson.crawler.SearchCollectionCrawler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.DirectFieldAccessor;
@@ -10,6 +9,8 @@ import org.springframework.oxm.XmlMappingException;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.oxm.mime.MimeContainer;
 import org.springframework.ws.soap.saaj.SaajSoapMessage;
+
+import guru.watson.crawler.SearchCollectionCrawler;
 
 /**
  * Any SOAP fault messages sent from the API will not unmarshall correctly. This
