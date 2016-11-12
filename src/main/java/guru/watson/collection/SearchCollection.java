@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.ws.client.core.WebServiceTemplate;
 import org.springframework.xml.transform.StringResult;
 
-import velocity.soap.Authentication;
 import velocity.types.SearchCollectionStatus;
 import velocity.types.SearchCollectionStatusResponse;
 
@@ -20,15 +19,12 @@ public class SearchCollection {
 	
 	@Autowired
 	private WebServiceTemplate template;
-	@Autowired
-	private Authentication authn;
 	
 	public String searchCollectionStatus(String collection) throws XmlMappingException, IOException {
 		logger.info("Enter searchCollectionStatus");
 		
 		SearchCollectionStatus request = new SearchCollectionStatus();
 		request.setCollection(collection);
-		request.setAuthentication(authn);
 		
 		SearchCollectionStatusResponse response = 
 				(SearchCollectionStatusResponse) template.marshalSendAndReceive(request);

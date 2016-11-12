@@ -10,15 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.ws.client.core.WebServiceTemplate;
 
-import velocity.soap.Authentication;
 import velocity.types.SearchCollectionCrawlerStart;
 
 @Component
 public class SearchCollectionCrawler {
 	private static final Logger logger = LoggerFactory.getLogger(SearchCollectionCrawler.class);
 	
-	@Autowired
-	private Authentication authn;
 	@Autowired
 	private WebServiceTemplate template;
 	
@@ -30,7 +27,6 @@ public class SearchCollectionCrawler {
     	request.setCollection(collection);
     	request.setSubcollection(subcollection);
     	request.setType(type);
-    	request.setAuthentication(authn);
     	
     	template.marshalSendAndReceive(request);
     	

@@ -2,17 +2,28 @@ package guru.watson;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.oxm.jaxb.Jaxb2Marshaller;
+import org.springframework.ws.client.core.WebServiceTemplate;
 
 import guru.watson.collection.SearchCollection;
 import guru.watson.crawler.SearchCollectionCrawler;
+import velocity.soap.Authentication;
 
 @SpringBootApplication
 public class Application {
 	private static final Logger logger = LoggerFactory.getLogger(Application.class);
+	
+	@Value("${service.endpoint}")
+	private String endpoint;
+	@Value("${service.user}")
+	private String user;
+	@Value("${service.password}")
+	private String password;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
@@ -21,7 +32,7 @@ public class Application {
 	@Bean
 	CommandLineRunner crawler(SearchCollectionCrawler scCrawler, SearchCollection search) {
 		return args -> {
-			String collection = "MyCollectionName";
+			String collection = "sc-csc-workorder";
 
 			if (args.length > 0) {
 				collection = args[0];
@@ -30,4 +41,29 @@ public class Application {
 			logger.info(scCrawler.searchCollectionCrawlerStart("staging", "refresh-new", collection));
 		};
 	}
+	
+	@Bean
+	public Jaxb2Marshaller marshaller() {
+		Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
+		marshaller.setContextPath("velocity.types");
+		return marshaller;
+	}
+	
+	@Bean
+	public WebServiceTemplate template(Jaxb2Marshaller marshaller) {
+		WebServiceTemplate template = new WebServiceTemplate();
+		template.setMarshaller(marshaller);
+		template.setUnmarshaller(marshaller);
+		template.setCheckConnectionForFault(false);
+		template.setDefaultUri(endpoint);
+		return template;
+	}
+	
+	@Bean
+	public Authentication authn() {
+    	Authentication authn = new Authentication();
+    	authn.setUsername(user);
+    	authn.setPassword(password);
+    	return authn;
+	}	
 }
