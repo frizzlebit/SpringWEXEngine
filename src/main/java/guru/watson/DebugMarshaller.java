@@ -1,4 +1,4 @@
-package org.guru.watson;
+package guru.watson;
 
 import javax.xml.transform.Source;
 

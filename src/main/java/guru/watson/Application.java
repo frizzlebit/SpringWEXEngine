@@ -1,4 +1,4 @@
-package org.guru.watson;
+package guru.watson;
 
 import org.guru.watson.collection.SearchCollection;
 import org.guru.watson.crawler.SearchCollectionCrawler;

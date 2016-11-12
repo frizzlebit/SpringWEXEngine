@@ -1,4 +1,4 @@
-package org.guru.watson;
+package guru.watson;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

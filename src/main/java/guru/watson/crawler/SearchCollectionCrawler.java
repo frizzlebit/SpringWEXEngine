@@ -1,4 +1,4 @@
-package org.guru.watson.crawler;
+package guru.watson.crawler;
 
 import java.util.HashMap;
 import java.util.Map;

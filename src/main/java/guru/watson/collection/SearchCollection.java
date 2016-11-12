@@ -1,4 +1,4 @@
-package org.guru.watson.collection;
+package guru.watson.collection;
 
 import java.io.IOException;
 
