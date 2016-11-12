@@ -8,15 +8,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
-import org.springframework.ws.client.WebServiceClientException;
 import org.springframework.ws.client.core.WebServiceTemplate;
 import org.springframework.ws.client.support.interceptor.ClientInterceptor;
-import org.springframework.ws.context.MessageContext;
 
 import guru.watson.collection.SearchCollection;
 import guru.watson.crawler.SearchCollectionCrawler;
 import guru.watson.spring.AuthnInterceptor;
-import guru.watson.spring.VelocityMessageFactory;
 import velocity.soap.Authentication;
 
 @SpringBootApplication
@@ -37,7 +34,7 @@ public class Application {
 	@Bean
 	CommandLineRunner crawler(SearchCollectionCrawler scCrawler, SearchCollection search) {
 		return args -> {
-			String collection = "sc-csc-workorder";
+			String collection = "MySearchCollection";
 
 			if (args.length > 0) {
 				collection = args[0];
