@@ -6,6 +6,7 @@ Sample code that shows how to use Spring WebServiceTemplate for interacting with
 1. Change line 37 of the Application.java class to include the name of a search collection on your target WEX server. You will see ```The exception [search-collection-invalid-name] was thrown.``` if you fail to do this.
 1. Edit the ```src/main/resources/application.properties``` to set the hostname, port and password required for your installation. You will need to change the ```service.name``` if you are on a Windows server.
 1. Ensure that your target WEX Engine service is running.
+1. Execute the code using: ```mvn spring-boot:run```
 
 Note: I tried to generate the JAX-WS classes using the [maven-jaxb2-plugin](https://java.net/projects/maven-jaxb2-plugin/pages/Home) and the [glassfish maven plugin](https://jax-ws-commons.java.net/jaxws-maven-plugin/) but could not get either of them to work. Perhaps at some point IBM will upgrade the WSDL file and I can try this again.
 
